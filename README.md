@@ -62,11 +62,16 @@ Fields will be:
 1. First name - First name of user
 1. Last name - Last name of user
 1. DOB - Date of birth of user
+1. Email - Email id of user
+1. IsEmailVerified - If email is verified or not
+1. EmailVerificationToken - Token for verifying email
+1. Password - Password in encrypted format of user
 1. Followers - Which users are following this user
 1. Following - This user is following which users
 1. Posts - Unique id of posts created by this user
 1. Tokens - Login tokens of this user.
 1. ProfilePicture - Profile picture of this user.
+1. CreatedOn - Date on which user is created
 
 
 ### POSTS

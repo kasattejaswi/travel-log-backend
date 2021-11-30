@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/kasattejaswi/travel-log-backend/issues"
   },
-  "homepage": "https://github.com/kasattejaswi/travel-log-backend#readme"
+  "homepage": "https://github.com/kasattejaswi/travel-log-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

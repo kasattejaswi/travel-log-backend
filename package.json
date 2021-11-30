@@ -1,0 +1,25 @@
+{
+  "name": "travellogbackend",
+  "version": "1.0.0",
+  "description": "This is the backend of the travel log application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kasattejaswi/travel-log-backend.git"
+  },
+  "keywords": [
+    "travel",
+    "blog",
+    "nodejs",
+    "express"
+  ],
+  "author": "Tejaswi Kasat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kasattejaswi/travel-log-backend/issues"
+  },
+  "homepage": "https://github.com/kasattejaswi/travel-log-backend#readme"
+}

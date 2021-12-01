@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         required: true,
+        unique: true,
     },
     name: {
         first: {
@@ -16,7 +19,7 @@ const userSchema = new mongoose.Schema({
         },
     },
     dateOfBirth: {
-        type: Date,
+        type: String,
         required: true,
     },
     followers: [
@@ -45,7 +48,7 @@ const userSchema = new mongoose.Schema({
     ],
     profilePicture: {
         type: Buffer,
-        required: true,
+        // required: true,
     },
     tokens: [
         {
@@ -62,25 +65,66 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     isEmailVerified: {
         type: Boolean,
         required: true,
+        default: false,
     },
     emailVerificationToken: {
         token: {
             type: String,
-            required: true,
+            // required: true,
         },
         expiresIn: {
             type: Date,
-            required: true,
+            // required: true,
         },
     },
     createdOn: {
         type: Date,
         required: true,
+        default: new Date(),
     },
+});
+
+userSchema.methods.toJson = function () {
+    const user = this;
+    const userObject = user.toObject();
+    delete userObject.password;
+    delete userObjecct.tokens;
+};
+
+// TODO Complete user finding function
+// userSchema.statics.findByCredentials = async (username, email, password) {
+
+// }
+
+userSchema.methods.generateToken = async function () {
+    const user = this;
+    const token = jwt.sign({ _id: user._id.toString }, "thisismydamnsecret", {
+        expiresIn: "12h",
+    });
+    user.tokens = user.tokens.concat({ token });
+    await user.save();
+    return token;
+};
+
+userSchema.pre("save", async function (next) {
+    const user = this;
+    if (user.isModified("password")) {
+        user.password = await bcrypt.hash(user.password, 8);
+    }
+    next();
+});
+
+userSchema.post("save", (err, doc, next) => {
+    if (err.code === 11000 && err.name === "MongoError") {
+        throw new Error("Username must be unique");
+    } else {
+        next();
+    }
 });
 
 const User = mongoose.model("User", userSchema);

@@ -4,6 +4,7 @@ const posts = require('./routes/post')
 const db = require('./db/connection')
 
 const app = express()
+app.use(express.json())
 app.use(user)
 app.use(posts)
 

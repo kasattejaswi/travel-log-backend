@@ -19,10 +19,10 @@ It contains users who share the amazing experiences of their travels.
 ## APIs
 
 ### /user
-GET /user - Get details of the user.
-POST /user - Create a new user.
-PATCH /user - To update existing user.
-DELETE /user - Delete an existing user.
+GET /user - Get details of the user.<br>
+POST /user - Create a new user.<br>
+PATCH /user - To update existing user.<br>
+DELETE /user - Delete an existing user.<br>
 
 
 ### /isUnique
@@ -38,8 +38,8 @@ POST /unfollow - Unfollow a particular user.
 GET /feed - Get the timeline feed.
 
 ### /post
-POST /post - Create a new post
-GET /post - Get a particular post
+POST /post - Create a new post<br>
+GET /post - Get a particular post<br>
 DELETE /post - Delete a particular post
 
 ### /like
@@ -49,8 +49,8 @@ POST /like - Like a particular post
 POST /unlike - Unlike a particular post
 
 ### /comment
-POST /comment - Add a comment on a particular post
-DELETE /comment - Delete a comment on a particular post
+POST /comment - Add a comment on a particular post<br>
+DELETE /comment - Delete a comment on a particular post<br>
 PATCH /comment - Update an existing comment on a particular post
 
 

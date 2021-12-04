@@ -48,7 +48,6 @@ const userSchema = new mongoose.Schema({
     ],
     profilePicture: {
         type: Buffer,
-        // required: true,
     },
     tokens: [
         {
@@ -89,21 +88,37 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.methods.toJson = function () {
+userSchema.methods.toJSON = function () {
     const user = this;
     const userObject = user.toObject();
     delete userObject.password;
-    delete userObjecct.tokens;
+    delete userObject.tokens;
+    delete userObject.profilePicture;
+    delete userObject.__v
+    return userObject;
 };
 
-// TODO Complete user finding function
-// userSchema.statics.findByCredentials = async (username, email, password) {
+userSchema.statics.findByCredentials = async (username, email, password) => {
+    let user;
+    if (username) {
+        user = await User.findOne({ userName: username });
+    } else if (email) {
+        user = await User.findOne({ email });
+    }
+    if (!user) {
+        throw new Error("Username or password is incorrect");
+    }
 
-// }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+        throw new Error("Username or password is incorrect");
+    }
+    return user;
+};
 
 userSchema.methods.generateToken = async function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString }, "thisismydamnsecret", {
+    const token = jwt.sign({ _id: user._id.toString() }, "thisismydamnsecret", {
         expiresIn: "12h",
     });
     user.tokens = user.tokens.concat({ token });

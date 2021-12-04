@@ -1,0 +1,37 @@
+{
+    "user": {
+        "post": {
+            "minimumKeys": [
+                "username",
+                "firstName",
+                "lastName",
+                "dateOfBirth",
+                "password",
+                "email"
+            ],
+            "allAllowedKeys": [
+                "username",
+                "firstName",
+                "lastName",
+                "dateOfBirth",
+                "password",
+                "email"
+            ]
+        },
+        "patch": {
+            
+        }
+    },
+    "login": {
+        "post": {
+            "minimumKeys": [
+                "password"
+            ],
+            "allAllowedKeys": [
+                "username",
+                "password",
+                "email"
+            ]
+        }
+    }
+}
